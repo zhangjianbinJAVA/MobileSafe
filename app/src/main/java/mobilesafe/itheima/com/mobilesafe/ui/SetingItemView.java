@@ -1,6 +1,7 @@
 package mobilesafe.itheima.com.mobilesafe.ui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
@@ -22,16 +23,41 @@ public class SetingItemView extends RelativeLayout {
 
     private TextView tv_title, tv_desc;
 
+    //自定义属性
+    private String desc_title;
+    private String desc_on;
+    private String desc_off;
+
 
     public SetingItemView(Context context) {
         super(context);
         iniView(context);
     }
 
+
+    /**
+     * 带有两个参数的构造方法，布局文件使用的时候调用
+     *
+     * @param context
+     * @param attrs   ：自动传入的属性集合
+     */
     public SetingItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         iniView(context);
 
+        //获取属性设置的值
+        if (attrs != null) {
+
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.myView);
+
+            desc_title = a.getString(R.styleable.myView_desc_title);
+            desc_on = a.getString(R.styleable.myView_desc_on);
+            desc_off = a.getString(R.styleable.myView_desc_off);
+
+            a.recycle();//为了保持以后使用的一致性，需要回收
+        }
+
+        tv_title.setText(desc_title);
     }
 
     public SetingItemView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -77,8 +103,12 @@ public class SetingItemView extends RelativeLayout {
      * @param checked
      */
     public void setChecked(boolean checked) {
+        if (checked) {
+            setDesc(desc_on);
+        } else {
+            setDesc(desc_off);
+        }
         cb_status.setChecked(checked);
-
     }
 
 

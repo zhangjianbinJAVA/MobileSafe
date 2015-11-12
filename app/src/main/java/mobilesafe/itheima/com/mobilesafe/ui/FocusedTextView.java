@@ -15,6 +15,7 @@ public class FocusedTextView extends TextView {
     }
 
     public FocusedTextView(Context context, AttributeSet attrs) {
+
         super(context, attrs);
     }
 

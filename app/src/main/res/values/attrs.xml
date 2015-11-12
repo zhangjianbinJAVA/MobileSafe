@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--自定义 属性-->
+    <declare-styleable name="myView">
+        <attr name="desc_on" format="string"/>
+        <attr name="desc_off" format="string"/>
+        <attr name="desc_title" format="string"/>
+    </declare-styleable>
+
+</resources>

@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:itheima="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -16,10 +17,15 @@
         />
 
 
+    <!--自定义属性-->
     <mobilesafe.itheima.com.mobilesafe.ui.SetingItemView
         android:id="@+id/siv_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        itheima:desc_off="设置自动更新已经关闭"
+        itheima:desc_on="设置自动更新已经开启"
+        itheima:desc_title="设置自动更新"
 
         />
 </LinearLayout>

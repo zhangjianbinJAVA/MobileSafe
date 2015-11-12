@@ -282,7 +282,7 @@ public class splashActivity extends Activity {
                 //开始时间
                 long startTime = System.currentTimeMillis();
                 try {
-                    URL url = new URL(getString(R.string.serverurl));
+                        URL url = new URL(getString(R.string.serverurl));
 
                     //联网操作
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
