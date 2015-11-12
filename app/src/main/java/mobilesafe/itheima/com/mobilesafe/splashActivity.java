@@ -30,7 +30,7 @@ import java.net.URL;
 import mobilesafe.itheima.com.mobilesafe.utils.StreamTools;
 
 /**
- * 程序初始化 界面
+ * 程序初始化 界面 splash
  */
 public class splashActivity extends Activity {
 
