@@ -116,9 +116,11 @@ public class splashActivity extends Activity {
 
                 //下载apk，并且替换安装
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                    //sdcard存在
+
+                    //sdcard存在  FinalHttp :自动下载app框架
                     FinalHttp finalHttp = new FinalHttp();
-                    finalHttp.download(apkurl,
+                    finalHttp.download(
+                            apkurl,
                             Environment.getExternalStorageDirectory().getAbsolutePath()
                                     + "/mobilesafe2.0.apk",
                             new AjaxCallBack<File>() {
@@ -151,7 +153,7 @@ public class splashActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                enterHome();
+                enterHome();//进入主界面
             }
         });
 
