@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,12 @@ import mobilesafe.itheima.com.mobilesafe.utils.StreamTools;
 
 /**
  * 程序初始化 界面 splash 1.0
+ * <p/>
+ * splash界面的作用
+ * 1、用来展现产品的Logo；
+ * 2、应用程序初始化的操作；
+ * 3、检查应用程序的版本；
+ * 4、检查当前应用程序是否合法注册；
  */
 public class splashActivity extends Activity {
 
@@ -46,10 +55,14 @@ public class splashActivity extends Activity {
     private String version;
     private String description;
 
+    private TextView tv_update_info;
+
     /**
      * 新版本下载地址 apk
      */
     private String apkurl;
+
+    private SharedPreferences sp;
 
 
     @Override
@@ -57,18 +70,36 @@ public class splashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+
         tv_splash_version = (TextView) findViewById(R.id.tv_splash_version);
 
         //动态设置版本号
         tv_splash_version.setText("版本号" + getVersionName());
 
 
-        //检查版本升级
-        checkUpdate();
+        //下载app进度
+        tv_update_info = (TextView) findViewById(R.id.tv_update_info);
+
+        boolean update = sp.getBoolean("update", false);
+
+        if (update) {
+            //检查版本升级
+            checkUpdate();
+        } else {
+            //用户在设置中心已经关闭了自动更新
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    enterHome();//进入主页面
+                }
+            }, 2000);
+        }
 
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.2f, 1.0f);
         alphaAnimation.setDuration(500);
 
+        //设置动画效果只有 view 能启动 动画
         findViewById(R.id.rl_root_splash).startAnimation(alphaAnimation);
 
     }
@@ -89,12 +120,16 @@ public class splashActivity extends Activity {
                     break;
                 case URL_ERROR://url 错误
                     enterHome();
+                    Toast.makeText(splashActivity.this, "url错误", Toast.LENGTH_SHORT).show();
                     break;
                 case NETWORK_ERROR: //网络错误
                     enterHome();
+                    Toast.makeText(splashActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+
                     break;
                 case JSON_ERROR://json 解析出错
                     enterHome();
+                    Toast.makeText(splashActivity.this, "数据解析出错", Toast.LENGTH_SHORT).show();
                     break;
             }
 
@@ -109,6 +144,24 @@ public class splashActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("提醒升级");
+
+        /**
+         * 用户点击返回 或   触摸 屏幕其它地方，对话框不 消失，通常用于强制升级(不友好)
+         */
+        // builder.setCancelable(false);
+
+        /**
+         * （友好的体验） 监听用户 点击 取消的事件
+         */
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                //进入主页面
+                enterHome();
+                dialog.dismiss();
+            }
+        });
+
         builder.setMessage(description);
         builder.setPositiveButton("立即升级", new DialogInterface.OnClickListener() {
             @Override
@@ -128,17 +181,39 @@ public class splashActivity extends Activity {
                                 @Override
                                 public void onFailure(Throwable t, int errorNo, String strMsg) {
                                     super.onFailure(t, errorNo, strMsg);
+                                    Toast.makeText(getApplicationContext(), "下载失败", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
                                 public void onSuccess(File file) {
                                     super.onSuccess(file);
+                                    installAPK(file);
                                 }
 
                                 @Override
                                 public void onLoading(long count, long current) {
                                     super.onLoading(count, current);
+
+                                    //显示进度条
+                                    tv_update_info.setVisibility(View.VISIBLE);
+
+                                    int progress = (int) (current * 100 / count);
+                                    tv_update_info.setText("下载进度：" + progress + "%");
                                 }
+
+                                /**
+                                 * 安装apk
+                                 * @param file
+                                 */
+                                private void installAPK(File file) {
+
+                                    Intent intent = new Intent();
+                                    intent.setAction("android.intent.action.VIEW");
+                                    intent.addCategory("android.intent.category.DEFAULT");
+                                    intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+                                    startActivity(intent);
+                                }
+
 
                             });
 
@@ -239,8 +314,6 @@ public class splashActivity extends Activity {
                         }
 
 
-                    } else {
-                        Log.i(Tag, "联网失败");
                     }
 
                 } catch (MalformedURLException e) {
