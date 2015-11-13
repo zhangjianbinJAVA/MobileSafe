@@ -45,7 +45,7 @@ public class SetingItemView extends RelativeLayout {
         super(context, attrs);
         iniView(context);
 
-        //获取属性设置的值
+        //获取自定义属性设置的值
         if (attrs != null) {
 
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.myView);
