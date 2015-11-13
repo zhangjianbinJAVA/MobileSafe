@@ -104,7 +104,7 @@ public class SetingItemView extends RelativeLayout {
      */
     public void setChecked(boolean checked) {
         if (checked) {
-            setDesc(desc_on);
+            setDesc(desc_on);//使用自定义属性值
         } else {
             setDesc(desc_off);
         }
