@@ -7,13 +7,8 @@
               tools:context="mobilesafe.itheima.com.mobilesafe.SettingActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dip"
-        android:background="#8866ff00"
-        android:gravity="center"
+        style="@style/page_title_style"
         android:text="设置中心"
-        android:textColor="#000"
-        android:textSize="22dp"
         />
 
 
@@ -26,6 +21,5 @@
         itheima:desc_off="设置自动更新已经关闭"
         itheima:desc_on="设置自动更新已经开启"
         itheima:desc_title="设置自动更新"
-
         />
 </LinearLayout>

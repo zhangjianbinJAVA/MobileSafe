@@ -57,7 +57,8 @@ public class SetingItemView extends RelativeLayout {
             a.recycle();//为了保持以后使用的一致性，需要回收
         }
 
-        tv_title.setText(desc_title);
+        tv_title.setText(desc_title);//使用这个组合组件是的默认显示
+        setDesc(desc_off);//使用这个组合组件是的默认显示
     }
 
     public SetingItemView(Context context, AttributeSet attrs, int defStyleAttr) {

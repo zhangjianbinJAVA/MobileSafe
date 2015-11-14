@@ -164,6 +164,8 @@ public class HomeActivity extends Activity {
                     dialog.dismiss();
 
                     //进入防盗页面
+                    Intent intent = new Intent(HomeActivity.this, LostFindActivity.class);
+                    startActivity(intent);
 
                 } else {
                     Toast.makeText(HomeActivity.this, "密码不一致", Toast.LENGTH_SHORT).show();
@@ -212,8 +214,9 @@ public class HomeActivity extends Activity {
                 }
 
                 if (sp.getString("password", "").equals(MD5Utils.getMD5Password(password))) {
-                    //密码正确，则对话框消掉，进入主页面
-
+                    //密码正确，则对话框消掉，进入手机防盗页页
+                    Intent intent = new Intent(HomeActivity.this, LostFindActivity.class);
+                    startActivity(intent);
 
                     dialog.dismiss();
                 } else {

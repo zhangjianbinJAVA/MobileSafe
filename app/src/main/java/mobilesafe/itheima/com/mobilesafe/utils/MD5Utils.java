@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by zhangjb on 2015/11/13.
+ * 密码加密工具 MD5
  */
 public class MD5Utils {
 
