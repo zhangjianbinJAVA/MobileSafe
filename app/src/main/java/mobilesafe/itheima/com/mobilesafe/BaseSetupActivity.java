@@ -7,6 +7,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+/**
+ * 设置页面向导的公共类
+ *
+ * 1.定义下一步 和 下一步的抽向方法
+ * 2.实现页面滑动事件
+ *
+ *
+ */
 public abstract class BaseSetupActivity extends Activity {
 
     //定义手势识别器
