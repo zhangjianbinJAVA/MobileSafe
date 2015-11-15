@@ -3,8 +3,14 @@ package mobilesafe.itheima.com.mobilesafe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.TextView;
 
 public class Setup4Activity extends BaseSetupActivity {
+
+    private CheckBox cb_proteing;
+    private TextView tv_proteing_state;
 
     private SharedPreferences sp;
 
@@ -12,8 +18,31 @@ public class Setup4Activity extends BaseSetupActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup4);
+        cb_proteing = (CheckBox) findViewById(R.id.cb_proteing);
 
-        sp = getSharedPreferences("config", MODE_PRIVATE);
+        cb_proteing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    tv_proteing_state.setText("你已开启防盗保护");
+                } else {
+                    tv_proteing_state.setText("你没有开启防盗保护");
+                }
+
+                //保存选择的状态
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean("proteing", isChecked);
+                editor.commit();
+            }
+        });
+
+        //记录用户上一次的选择
+        boolean proteing = sp.getBoolean("proteing", false);
+        if (proteing) {
+            cb_proteing.setChecked(true);
+        } else {
+            cb_proteing.setChecked(false);
+        }
     }
 
     @Override

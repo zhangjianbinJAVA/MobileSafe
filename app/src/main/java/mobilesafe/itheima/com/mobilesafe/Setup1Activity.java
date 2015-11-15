@@ -35,5 +35,6 @@ public class Setup1Activity extends BaseSetupActivity {
     @Override
     protected void showPre() {
 
+
     }
 }

@@ -1,6 +1,7 @@
 package mobilesafe.itheima.com.mobilesafe;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -9,13 +10,13 @@ import android.widget.Toast;
 
 /**
  * 设置页面向导的公共类
- *
+ * <p/>
  * 1.定义下一步 和 下一步的抽向方法
  * 2.实现页面滑动事件
- *
- *
  */
 public abstract class BaseSetupActivity extends Activity {
+
+    protected SharedPreferences sp;
 
     //定义手势识别器
     private GestureDetector detector;
@@ -24,6 +25,7 @@ public abstract class BaseSetupActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_setup);
+        sp = getSharedPreferences("config", MODE_PRIVATE);
 
         /**
          * 实例化一个手势 识别器
@@ -58,13 +60,13 @@ public abstract class BaseSetupActivity extends Activity {
 
                 //屏蔽 斜着划的情况
                 if (Math.abs(e2.getRawY() - e1.getRawY()) > 100) {
-                    Toast.makeText(getBaseContext(), "不能这样滑动", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "不能这样滑动", Toast.LENGTH_SHORT).show();
                     return true;
                 }
 
                 //屏蔽在 x轴滑动很慢的情形
-                if (Math.abs(velocityX) < 100) {
-                    Toast.makeText(getBaseContext(), "滑动的太慢了", Toast.LENGTH_SHORT).show();
+                if (Math.abs(velocityX) < 200) {
+                    Toast.makeText(getApplicationContext(), "滑动的太慢了", Toast.LENGTH_SHORT).show();
                     return true;
                 }
 
