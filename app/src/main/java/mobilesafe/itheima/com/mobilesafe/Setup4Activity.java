@@ -18,7 +18,12 @@ public class Setup4Activity extends BaseSetupActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup4);
+
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+
         cb_proteing = (CheckBox) findViewById(R.id.cb_proteing);
+
+        tv_proteing_state = (TextView) findViewById(R.id.tv_proteing_state);
 
         cb_proteing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -40,8 +45,10 @@ public class Setup4Activity extends BaseSetupActivity {
         boolean proteing = sp.getBoolean("proteing", false);
         if (proteing) {
             cb_proteing.setChecked(true);
+            tv_proteing_state.setText("你已开启防盗保护");
         } else {
             cb_proteing.setChecked(false);
+            tv_proteing_state.setText("你没有开启防盗保护");
         }
     }
 

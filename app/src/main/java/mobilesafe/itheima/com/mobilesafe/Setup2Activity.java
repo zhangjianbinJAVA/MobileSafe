@@ -53,7 +53,7 @@ public class Setup2Activity extends BaseSetupActivity {
 
                     //保存sim卡的序列号
                     String sim = tm.getSimSerialNumber();
-                    Toast.makeText(Setup2Activity.this, sim, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(Setup2Activity.this, sim, Toast.LENGTH_LONG).show();
                     editor.putString("sim", sim);
                 }
 

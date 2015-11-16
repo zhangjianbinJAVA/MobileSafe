@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * 手机防盗页面
@@ -12,6 +14,10 @@ import android.view.View;
 public class LostFindActivity extends AppCompatActivity {
 
     private SharedPreferences sp;
+
+    private TextView tv_safernumber;
+
+    private ImageView iv_protecting;
 
 
     @Override
@@ -27,6 +33,21 @@ public class LostFindActivity extends AppCompatActivity {
 
         if (configed) {
             setContentView(R.layout.activity_lost_find);
+
+            //用户选择的安全号码
+            tv_safernumber = (TextView) findViewById(R.id.tv_safernumber);
+            String phone = sp.getString("phone", "");
+            tv_safernumber.setText(phone);
+
+            //防盗开启的状态
+            iv_protecting = (ImageView) findViewById(R.id.iv_protecting);
+            boolean proteing = sp.getBoolean("proteing",false);
+            if(proteing){
+                iv_protecting.setImageResource(R.drawable.lock);
+            }else {
+                iv_protecting.setImageResource(R.drawable.unlock);
+            }
+
         } else {
             //还没有做过设置向导
             Intent intent = new Intent(this, Setup1Activity.class);
@@ -35,6 +56,7 @@ public class LostFindActivity extends AppCompatActivity {
             //关闭当前页面
             finish();
         }
+
 
     }
 
