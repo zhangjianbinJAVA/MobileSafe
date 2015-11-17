@@ -100,6 +100,7 @@
             </intent-filter>
         </receiver>
 
+        <!--GPS定位服务-->
         <service
             android:name=".service.GPSService"
             android:enabled="true"
