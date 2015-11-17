@@ -253,8 +253,8 @@ public class splashActivity extends Activity {
      */
     private String getVersionName() {
         //用来管理手机的apk
-        PackageManager pm = getPackageManager();
         try {
+        PackageManager pm = getPackageManager();
 
             //得到 apk的功能清单文件
             PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);

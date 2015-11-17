@@ -11,6 +11,7 @@
     <TextView
         style="@style/page_title_style"
         android:text="功能列表"
+
         />
 
     <mobilesafe.itheima.com.mobilesafe.ui.FocusedTextView
@@ -21,6 +22,7 @@
         android:singleLine="true"
         android:text="作者：小鱼儿"
         android:textSize="18sp"
+
 
         />
 

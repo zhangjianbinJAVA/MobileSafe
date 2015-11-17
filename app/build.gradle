@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "mobilesafe.itheima.com.mobilesafe"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 16
         versionCode 7
         versionName "7.0"
     }

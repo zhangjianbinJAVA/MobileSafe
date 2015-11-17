@@ -64,7 +64,7 @@ public class Setup4Activity extends BaseSetupActivity {
     @Override
     protected void showNext() {
         SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("configed", true);
+        editor.putBoolean("configed", true); //用户已做过向导了，不需要在出现向导页面了
         editor.commit();
 
         //设置向导页面完成，进入手机防盗页面
