@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="mobilesafe.itheima.com.mobilesafe.AtoolsActivity">
+
+
+    <TextView
+        style="@style/page_title_style"
+        android:text="高级工具" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dip"
+        android:drawableLeft="@android:drawable/sym_call_incoming"
+        android:gravity="center_vertical"
+        android:onClick="numberQuery"
+        android:text="号码归属地查询"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:clickable="true"
+        />
+
+</LinearLayout>

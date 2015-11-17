@@ -25,7 +25,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -69,6 +71,7 @@ public class splashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        copyDB();//拷贝数据库，只操作一次
 
         sp = getSharedPreferences("config", MODE_PRIVATE);
 
@@ -254,7 +257,7 @@ public class splashActivity extends Activity {
     private String getVersionName() {
         //用来管理手机的apk
         try {
-        PackageManager pm = getPackageManager();
+            PackageManager pm = getPackageManager();
 
             //得到 apk的功能清单文件
             PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
@@ -282,7 +285,7 @@ public class splashActivity extends Activity {
                 //开始时间
                 long startTime = System.currentTimeMillis();
                 try {
-                        URL url = new URL(getString(R.string.serverurl));
+                    URL url = new URL(getString(R.string.serverurl));
 
                     //联网操作
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -344,6 +347,37 @@ public class splashActivity extends Activity {
                 }
             }
         }).start();
+    }
+
+
+    // path 把address.db这个数据库拷贝到data/data/《包名》/files/address.db
+    private void copyDB() {
+        try {
+
+            File file = new File(getFilesDir(), "address.db");
+
+            if (file.exists() && file.length() > 0) {
+                //正常了，就不需要拷贝了
+                Toast.makeText(this, "正常了，就不需要拷贝了", Toast.LENGTH_SHORT).show();
+            } else {
+                InputStream is = getAssets().open("address.db");
+
+                file = new File(getFilesDir(), "address.db");
+                FileOutputStream fos = new FileOutputStream(file);
+
+                byte[] buffer = new byte[1024];
+                int len = 0;
+                while ((len = is.read(buffer)) != -1) {
+                    fos.write(buffer, 0, len);
+                }
+                is.close();
+                fos.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
