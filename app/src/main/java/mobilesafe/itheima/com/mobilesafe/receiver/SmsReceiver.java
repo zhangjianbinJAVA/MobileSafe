@@ -18,7 +18,7 @@ import mobilesafe.itheima.com.mobilesafe.R;
 import mobilesafe.itheima.com.mobilesafe.service.GPSService;
 
 /**
- * 短信指令的广播接受者
+ * 安全号码 短信指令的广播接受者
  */
 public class SmsReceiver extends BroadcastReceiver {
     private static final String TAG = "SMSReceiver";

@@ -1,31 +1,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="mobilesafe.itheima.com.mobilesafe.NumberAddressActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="mobilesafe.itheima.com.mobilesafe.NumberAddressActivity">
 
     <TextView
         style="@style/page_title_style"
-        android:text="号码归属地的查询" />
+        android:text="号码归属地的查询"/>
 
     <EditText
         android:id="@+id/ed_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入电话号码" />
+        android:hint="请输入电话号码"/>
 
     <Button
         android:id="@+id/numberAddressQuery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="3dip"
         android:onClick="numberAddressQuery"
-        android:text="查询" />
+        android:text="查询"
+        android:textColor="#000"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/tv_showResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="结果：" />
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dip"
+        android:text="结果："
+        android:textColor="#000"
+        android:textSize="20sp"
+        />
 
 </LinearLayout>

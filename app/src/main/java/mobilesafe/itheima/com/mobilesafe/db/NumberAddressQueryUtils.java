@@ -1,4 +1,4 @@
-package mobilesafe.itheima.com.mobilesafe.utils;
+package mobilesafe.itheima.com.mobilesafe.db;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,10 +25,11 @@ public class NumberAddressQueryUtils {
         if (number.matches("^1[34568]\\d{9}$")) {
             // 手机号码
 
+            String subStr = number.substring(0, 7);
             Cursor cursor = database
                     .rawQuery(
                             "select location from data2 where id = (select outkey from data1 where id = ?)",
-                            new String[]{number.substring(0, 7)});
+                            new String[]{subStr});
 
             while (cursor.moveToNext()) {
 

@@ -12,7 +12,7 @@
         />
 
 
-    <!--自定义属性-->
+    <!-- 自动更新 -->
     <mobilesafe.itheima.com.mobilesafe.ui.SetingItemView
         android:id="@+id/siv_update"
         android:layout_width="wrap_content"
@@ -21,5 +21,17 @@
         itheima:desc_off="设置自动更新已经关闭"
         itheima:desc_on="设置自动更新已经开启"
         itheima:desc_title="设置自动更新"
+        />
+
+
+    <!--来电归属地-->
+    <mobilesafe.itheima.com.mobilesafe.ui.SetingItemView
+        android:id="@+id/siv_show_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        itheima:desc_off="设置显示来电归属地已经关闭"
+        itheima:desc_on="设置显示来电归属地已经开启"
+        itheima:desc_title="设置显示来电归属地"
         />
 </LinearLayout>

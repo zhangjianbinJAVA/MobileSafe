@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 /**
  * 接收系统发出的广播
- */
+*/
 public class BootCompleteReceiver extends BroadcastReceiver {
     private SharedPreferences sp;
     private TelephonyManager tm;
