@@ -1,13 +1,16 @@
 package mobilesafe.itheima.com.mobilesafe;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 import mobilesafe.itheima.com.mobilesafe.service.AddressService;
-import mobilesafe.itheima.com.mobilesafe.service.ServiceUtils;
+import mobilesafe.itheima.com.mobilesafe.utils.ServiceUtils;
+import mobilesafe.itheima.com.mobilesafe.ui.SetingClickView;
 import mobilesafe.itheima.com.mobilesafe.ui.SetingItemView;
 
 /**
@@ -25,7 +28,11 @@ public class SettingActivity extends Activity {
     //保存用户的设置信息
     private SharedPreferences sp;
 
+    //后台的服务
     private Intent showAddress;
+
+    //设置归属地显示框背景
+    private SetingClickView scv_changebg;
 
 
     /**
@@ -44,7 +51,7 @@ public class SettingActivity extends Activity {
                 "mobilesafe.itheima.com.mobilesafe.service.AddressService");
 
         if (isServiceRunning) {
-            //临听来电的服务是开启的
+            //监听来电的服务是开启的
             siv_show_address.setChecked(true);
         } else {
             siv_show_address.setChecked(false);
@@ -131,6 +138,49 @@ public class SettingActivity extends Activity {
 
             }
         });
+
+
+        //设置号码归属地的背景
+        scv_changebg = (SetingClickView) findViewById(R.id.scv_changebg);
+        scv_changebg.setTitle("归属地提示框风格");
+
+        //土司背景样式的名子
+        final String[] names = {"半透明", "活力橙", "卫士蓝", "苹果绿"};
+
+        //获取用户的选择
+        int which = sp.getInt("which", 0);
+        scv_changebg.setDesc(names[which]);
+
+
+        scv_changebg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //弹出一个对话框
+                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+
+                builder.setTitle("归属地提示框风格");
+
+                builder.setSingleChoiceItems(names, sp.getInt("which", 0), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //保存选择参数
+                        SharedPreferences.Editor editor = sp.edit();
+
+                        editor.putInt("which", which);
+                        editor.commit();
+
+                        scv_changebg.setDesc(names[which]);//更改描述信息
+                        dialog.dismiss();//关闭对话框
+                    }
+                });
+
+                builder.setNegativeButton("取消", null);
+                builder.show();
+            }
+        });
+
+
     }
 
 

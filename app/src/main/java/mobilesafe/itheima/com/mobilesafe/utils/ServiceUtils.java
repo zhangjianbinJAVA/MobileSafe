@@ -1,4 +1,4 @@
-package mobilesafe.itheima.com.mobilesafe.service;
+package mobilesafe.itheima.com.mobilesafe.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
