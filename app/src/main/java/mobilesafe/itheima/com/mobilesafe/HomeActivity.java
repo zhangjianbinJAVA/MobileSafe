@@ -77,19 +77,23 @@ public class HomeActivity extends Activity {
         list_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent;
                 switch (position) {
-                    case 8://设置中心
-                        Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
 
-                        startActivity(intent);
-                        break;
                     case 0: //手机防盗
                         showLostFindDialog();
                         break;
+                    case 1://手机卫生
+                        intent = new Intent(HomeActivity.this, CallSmsSafeActivity.class);
+                        startActivity(intent);
+                        break;
                     case 7://高级工具
-                        Intent intent1 = new Intent(HomeActivity.this, AtoolsActivity.class);
-                        startActivity(intent1);
+                        intent = new Intent(HomeActivity.this, AtoolsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 8://设置中心
+                        intent = new Intent(HomeActivity.this, SettingActivity.class);
+                        startActivity(intent);
                         break;
                 }
 
@@ -146,7 +150,7 @@ public class HomeActivity extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //取去密码
+                //取出密码
                 String password = et_setup_pwd.getText().toString().trim();
                 String password_confirm = et_setup_confrim.getText().toString().trim();
 

@@ -15,4 +15,5 @@
     <string name="andmin_desc">管理员描述信息</string>
     <string name="title_activity_atools">AtoolsActivity</string>
     <string name="title_activity_number_address">NumberAddressActivity</string>
+    <string name="title_activity_call_sms_safe">CallSmsSafeActivity</string>
 </resources>

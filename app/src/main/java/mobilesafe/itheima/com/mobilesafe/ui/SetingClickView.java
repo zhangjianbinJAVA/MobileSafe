@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,12 +13,10 @@ import mobilesafe.itheima.com.mobilesafe.R;
  * 自定义组合 控件
  * <p/>
  * 1.两个TexView
- * 2.一个CheckBox
+ * 2. 一个图片
  * 3.一个View，是一个下划线
  */
 public class SetingClickView extends RelativeLayout {
-
-    private ImageView cb_status;
 
     private TextView tv_title, tv_desc;
 

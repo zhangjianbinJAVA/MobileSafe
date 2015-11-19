@@ -120,7 +120,6 @@ public class SettingActivity extends Activity {
             siv_show_address.setChecked(false);
         }
 
-
         siv_show_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,7 +174,7 @@ public class SettingActivity extends Activity {
                     }
                 });
 
-                builder.setNegativeButton("取消", null);
+                builder.setNegativeButton("关闭", null);
                 builder.show();
             }
         });

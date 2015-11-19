@@ -53,7 +53,7 @@ public class NumberAddressActivity extends Activity {
                 if (s != null && s.length() >= 3) {
                     //查询数据库，并且显示结果
                     String address = NumberAddressQueryUtils.queryNumber(s.toString());
-                    tv_showResult.setText(address);
+                    tv_showResult.setText("结果："+address);
                 }
 
             }
@@ -95,7 +95,7 @@ public class NumberAddressActivity extends Activity {
             //第一种：联网查询；
             //第二种：把数据库 放在本地；
             String address = NumberAddressQueryUtils.queryNumber(phoneNumber);
-            tv_showResult.setText(address);
+            tv_showResult.setText("结果："+address);
         }
     }
 }

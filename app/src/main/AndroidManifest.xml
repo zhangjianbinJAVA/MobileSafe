@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mobilesafe.itheima.com.mobilesafe">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mobilesafe.itheima.com.mobilesafe" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,25 +14,25 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!--允许访问振动设备-->
+    <!-- 允许访问振动设备 -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <!--外播出电话权限-->
+    <!-- 外播出电话权限 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
-    <!--自定义土司要触摸移动，必须要加的权限-->
+    <!-- 自定义土司要触摸移动，必须要加的权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
 
         <!-- 初始化界面 -->
         <activity
             android:name=".splashActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,40 +43,40 @@
         <!-- 首页面 -->
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home"></activity>
+            android:label="@string/title_activity_home" />
 
         <!-- 设置中心 -->
         <activity
             android:name=".SettingActivity"
-            android:label="@string/title_activity_setting"></activity>
+            android:label="@string/title_activity_setting" />
 
         <!-- 手机防盗 -->
         <activity
             android:name=".LostFindActivity"
-            android:label="@string/title_activity_lost_find"></activity>
+            android:label="@string/title_activity_lost_find" />
 
         <!-- 向导页面 -->
         <activity
             android:name=".Setup1Activity"
-            android:label="@string/title_activity_setup1"></activity>
+            android:label="@string/title_activity_setup1" />
         <activity
             android:name=".Setup2Activity"
-            android:label="@string/title_activity_setup2"></activity>
+            android:label="@string/title_activity_setup2" />
         <activity
             android:name=".Setup3Activity"
-            android:label="@string/title_activity_setup3"></activity>
+            android:label="@string/title_activity_setup3" />
         <activity
             android:name=".Setup4Activity"
-            android:label="@string/title_activity_setup4"></activity>
+            android:label="@string/title_activity_setup4" />
         <activity
             android:name=".BaseSetupActivity"
-            android:label="@string/title_activity_base_setup"></activity>
+            android:label="@string/title_activity_base_setup" />
 
         <!-- 系统启动广播接受者：用于判断是否sim卡更换了 -->
         <receiver
             android:name=".receiver.BootCompleteReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -86,14 +85,14 @@
         <!-- 选择联系人数据 -->
         <activity
             android:name=".SelectContactActivity"
-            android:label="@string/title_activity_select_contact"></activity>
+            android:label="@string/title_activity_select_contact" />
 
         <!-- 短信指令的广播接受者:用于接收安全号码发送的远程指令 -->
         <receiver
             android:name=".receiver.SmsReceiver"
             android:enabled="true"
             android:exported="true"
-            android:priority="1000">
+            android:priority="1000" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -103,14 +102,14 @@
         <service
             android:name=".service.GPSService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <!-- 系统管理员广播接收者 -->
         <receiver
             android:name=".receiver.Admin"
             android:description="@string/andmin_desc"
             android:label="管理员"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/device_admin" />
@@ -123,18 +122,24 @@
         <!-- 高级工具 -->
         <activity
             android:name=".AtoolsActivity"
-            android:label="@string/title_activity_atools"></activity>
+            android:label="@string/title_activity_atools" />
 
         <!-- 号码归属地查询 -->
         <activity
             android:name=".NumberAddressActivity"
-            android:label="@string/title_activity_number_address"></activity>
+            android:label="@string/title_activity_number_address" />
 
-        <!--来电号码归属地的显示-->
+        <!-- 来电号码归属地的显示 -->
         <service
             android:name=".service.AddressService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <!--黑名单拦截 界面-->
+        <activity
+            android:name=".CallSmsSafeActivity"
+            android:label="@string/title_activity_call_sms_safe" >
+        </activity>
     </application>
 
 </manifest>
